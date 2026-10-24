@@ -62,10 +62,12 @@ function Column({
           <li key={l.label}>
             <Link
               href={l.href}
+              target={external || l.href.startsWith("http") ? "_blank" : undefined}
+              rel={external || l.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="inline-flex items-center gap-1.5 underline decoration-ink/0 underline-offset-4 transition-colors hover:decoration-ink"
             >
               {l.label}
-              {external && (
+              {(external || l.href.startsWith("http")) && (
                 <ArrowUpRight aria-hidden="true" size={14} weight="bold" />
               )}
             </Link>
