@@ -4,11 +4,14 @@ import HowItWorks from "@/components/sections/Howitworks";
 import Platform from "@/components/sections/Platform";
 import Products from "@/components/sections/Products";
 import Research from "@/components/sections/Research";
+import AboutZypp from "@/components/sections/AboutZypp";
+import JsonLd from "@/components/seo/JsonLd";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
+      <JsonLd />
       <Link
         href="#main"
         className="mono-label sr-only z-60 rounded-xl bg-paper px-4 py-3 text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
@@ -21,6 +24,7 @@ export default function Home() {
         <HowItWorks />
         <Products />
         <Research />
+        <AboutZypp />
         <Footer /> 
       </main>
     </>

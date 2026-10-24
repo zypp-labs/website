@@ -1,0 +1,21 @@
+{
+  "name": "Zypp Labs",
+  "short_name": "Zypp Labs",
+  "description": "Zypp Labs is a research and engineering company building offline-capable payment infrastructure.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f5f1",
+  "theme_color": "#04120a",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

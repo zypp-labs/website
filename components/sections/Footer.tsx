@@ -21,15 +21,13 @@ const explore = [
 ];
 
 const legal = [
-  { label: "Privacy policy", href: "#" },
-  { label: "Cookie policy", href: "#" },
-  { label: "Terms of service", href: "#" },
+  { label: "Privacy policy", href: "/privacy" },
+  { label: "Terms of service", href: "/terms" },
 ];
 
 const social = [
-  { label: "X / Twitter", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "GitHub", href: "#" },
+  { label: "X / Twitter", href: "https://x.com/use_zypp" },
+  { label: "GitHub", href: "https://github.com/zypp-labs" },
 ];
 
 /**

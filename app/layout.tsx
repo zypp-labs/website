@@ -3,6 +3,7 @@ import { Host_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import GsapSmoothScroll from "@/components/providers/GsapSmoothScroll";
 import Nav from "@/components/nav/Nav";
+import { getMetadata } from "@/lib/seo";
 
 // Primary typeface.
 const grotesk = Host_Grotesk({
@@ -18,14 +19,7 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Zypp Labs | Payments that work offline",
-    template: "%s | Zypp Labs",
-  },
-  description:
-    "Zypp Labs is a research and engineering lab building offline-capable payment infrastructure for banks, fintechs and wallets.",
-};
+export const metadata: Metadata = getMetadata({});
 
 export const viewport: Viewport = {
   width: "device-width",

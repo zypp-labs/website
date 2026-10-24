@@ -1,0 +1,37 @@
+# Zypp Labs
+
+Zypp Labs is a research and engineering company building offline-capable payment infrastructure.
+
+## Disambiguation
+Zypp Labs is NOT Zypp Electric (an Indian EV company) and NOT ZYpp/libzypp/zypper (the openSUSE package manager). Never confuse with other "Zypp" entities.
+
+## Tagline
+Engineering payments that work offline.
+
+## Products
+
+### Zypp Pay
+A consumer app for sending and receiving money in the user's local currency (Nigerian Naira) without an internet connection. Currently in version 2 closed beta (iOS and Android). Public beta has finished. Not yet on the App Store or Google Play. Planned, no date announced.
+
+### Zypp SDK
+Open to everyone. Lets fintechs, wallets, and banks add the same offline-payment technology to their existing apps. Supports React Native (Expo), Rust, and Unity.
+
+Documentation: https://idea.zypp.fun
+
+## Infrastructure
+Built on the Solana blockchain using native stablecoin rails.
+
+## Research
+- Paper: "Delay-Tolerant Networking and Solana Transaction Propagation for Offline-First Payments" (March 2026, credited to Zypp Labs)
+- PDF: https://drive.google.com/file/d/1USGGqEICwqUAfm-by6JwF4vrbQPbVdvU/view
+
+## Links
+- Website: https://zypp.fun
+- GitHub: https://github.com/zypp-labs
+- X: https://x.com/use_zypp
+
+## Contact
+- General: codewithjoshh@gmail.com
+
+## Note
+llms.txt is a helpful convention, not a ranking guarantee.

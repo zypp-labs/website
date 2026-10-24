@@ -28,8 +28,8 @@ const REPORTS: Report[] = [
     title: "Delay Tolerant Networking and Solana Transaction Propagation",
     line: "for Offline-First Payments",
     summary:
-      "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect.",
-    href: "#",
+      "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect. Released March 2026 by Zypp Labs.",
+    href: "https://drive.google.com/file/d/1USGGqEICwqUAfm-by6JwF4vrbQPbVdvU/view",
     featured: true,
   },
   {
