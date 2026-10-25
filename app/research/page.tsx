@@ -28,7 +28,7 @@ const REPORTS: Report[] = [
     line: "for Offline-First Payments",
     summary:
       "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect. Released March 2026 by Zypp Labs.",
-    href: "https://drive.google.com/file/d/1USGGqEICwqUAfm-by6JwF4vrbQPbVdvU/view",
+    href: "/research/dtn-solana-offline-payments",
     featured: true,
   },
   {
@@ -36,7 +36,7 @@ const REPORTS: Report[] = [
     title: "Threat model for device-to-device payments",
     line: "and the controls that contain each",
     summary: "Maps the attacks that matter when no server is watching, and the on-device controls that contain each one.",
-    href: "#",
+    href: "/research/threat-model-d2d-payments",
     featured: true,
   },
 ];
@@ -124,9 +124,9 @@ export default function ResearchPage() {
       </Link>
       <main id="main" className="flex-1 bg-paper text-ink">
         <div className="mx-auto max-w-screen px-6 py-28 sm:px-20 sm:py-36 lg:py-44">
-          <div className="mb-10 flex flex-col gap-4 border-t border-ink/35 pt-5 sm:flex-row sm:items-start sm:justify-between">
-            <p className="text-[1.875rem] font-normal tracking-[-0.03em]">
-              Research
+          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-[7rem] font-medium leading-[1] tracking-[-0.03em]">
+              Foundational <br/> Research
             </p>
             <p className="max-w-[28rem] text-md leading-snug text-ink/70">
               The whitepapers, protocols and threat models behind offline
