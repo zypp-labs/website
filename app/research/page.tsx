@@ -1,45 +1,12 @@
 "use client";
 
-import { Metadata } from "next";
-import { getMetadata } from "@/lib/seo";
 import Footer from "@/components/sections/Footer";
 import Link from "next/link";
 import {
   ArrowUpRight,
   Lightning,
-  MagnifyingGlass,
 } from "@phosphor-icons/react";
-
-type ReportType = "Whitepaper" | "Protocol" | "Security";
-
-type Report = {
-  type: ReportType;
-  title: string;
-  line: string;
-  summary: string;
-  href: string;
-  featured?: boolean;
-};
-
-const REPORTS: Report[] = [
-  {
-    type: "Whitepaper",
-    title: "Delay Tolerant Networking and Solana Transaction Propagation",
-    line: "for Offline-First Payments",
-    summary:
-      "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect. Released March 2026 by Zypp Labs.",
-    href: "/research/dtn-solana-offline-payments",
-    featured: true,
-  },
-  {
-    type: "Security",
-    title: "Threat model for device-to-device payments",
-    line: "and the controls that contain each",
-    summary: "Maps the attacks that matter when no server is watching, and the on-device controls that contain each one.",
-    href: "/research/threat-model-d2d-payments",
-    featured: true,
-  },
-];
+import { reports as REPORTS } from "@/content/research";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 

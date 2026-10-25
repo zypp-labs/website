@@ -153,7 +153,7 @@ export default function Footer() {
 
   return (
     <footer className="p-3 sm:p-4">
-      <div className="relative isolate flex min-h-[44rem] flex-col justify-between overflow-hidden rounded-[1.75rem] bg-night text-paper sm:min-h-[52rem]">
+      <div className="relative isolate flex min-h-[44rem] flex-col justify-between overflow-hidden rounded-[1.75rem] bg-night text-paper sm:min-h-208">
         {/* Media: the hero poster, resolving from blur to focus on scroll-in */}
         <motion.div
           aria-hidden="true"
@@ -184,7 +184,7 @@ export default function Footer() {
         {/* 1. Text, then 2. call to action */}
         <div>
           <div className="px-6 pt-3 sm:px-10 sm:pt-4">
-            <div className="flex h-[3.375rem] items-center">
+            <div className="flex h-13.5 items-center">
               <Logo />
             </div>
           </div>
@@ -195,7 +195,7 @@ export default function Footer() {
               {...focus}
             >
               Engineering payments {" "}
-              <span className="text-paper/75">sbeyond connectivity.</span>
+              <span className="text-paper/75">beyond connectivity.</span>
             </motion.h2>
 
             <div className="mt-8">
@@ -220,7 +220,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mono-label mt-12 flex flex-wrap justify-between gap-x-10 gap-y-2 border-t border-ink/15 pt-6 text-xs text-ink/60">
+            <div className="text-md mt-12 flex flex-wrap justify-between gap-x-10 gap-y-2 border-t border-ink/15 pt-6 text-xs text-ink/60">
               <span>© 2026 Zypp Labs</span>
               <span>All rights reserved</span>
             </div>
