@@ -1,6 +1,14 @@
 import { Metadata } from "next";
 
-export const SITE_URL = "https://zypp.fun";
+const getSiteUrl = () => {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.replace(/\/$/, "")}`;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
+  return "https://zypp.fun";
+};
+
+export const SITE_URL = getSiteUrl();
+
 export const SITE_NAME = "Zypp Labs";
 
 export const CANONICAL_ENTITY_SENTENCE =
@@ -56,6 +64,7 @@ export function getMetadata({
       images: [
         {
           url: ogImageUrl,
+          secureUrl: ogImageUrl,
           width: 1200,
           height: 630,
           type: "image/png",
@@ -65,9 +74,16 @@ export function getMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: "@use_zypp",
+      creator: "@use_zypp",
       title: pageTitle,
       description: pageDescription,
-      images: [ogImageUrl],
+      images: [
+        {
+          url: ogImageUrl,
+          alt: DEFAULT_OG_ALT,
+        },
+      ],
     },
     icons: {
       icon: [
