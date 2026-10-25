@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getMetadata } from "@/lib/seo";
 import Footer from "@/components/sections/Footer";
+import Research from "@/components/sections/Research";
 import Link from "next/link";
 
 export const metadata: Metadata = getMetadata({
@@ -18,15 +19,8 @@ export default function ResearchPage() {
       >
         Skip to content
       </Link>
-      <main id="main" className="flex-1 bg-paper text-ink">
-        <div className="mx-auto max-w-4xl px-6 py-16 sm:px-10 sm:py-24">
-          <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">
-            Research
-          </h1>
-          <p className="mt-6 text-lg text-ink/70">
-            Whitepapers and research from Zypp Labs.
-          </p>
-        </div>
+      <main id="main" className="flex-1">
+        <Research />
       </main>
       <Footer />
     </>
