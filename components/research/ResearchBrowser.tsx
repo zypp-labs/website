@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -43,6 +44,37 @@ function isLinkable(report: ResearchReport) {
   return report.status === "published";
 }
 
+/**
+ * Single place where a report title becomes an anchor, so the scheme
+ * allow-list and the not-published gate cannot be bypassed by a card that
+ * renders its own `<Link>` (Phase 3: XSS via href).
+ */
+function ReportTitle({
+  report,
+  className,
+  children,
+}: {
+  report: ResearchReport;
+  className?: string;
+  children: ReactNode;
+}) {
+  if (!isLinkable(report)) {
+    return <span className={`block ${className ?? ""}`}>{children}</span>;
+  }
+
+  return (
+    <Link
+      href={reportHref(report)}
+      target={report.external ? "_blank" : undefined}
+      // Threat: reverse tabnabbing (Phase 3)
+      rel={report.external ? "noopener noreferrer" : undefined}
+      className={className}
+    >
+      {children}
+    </Link>
+  );
+}
+
 function searchableText(report: ResearchReport) {
   return [report.title, report.line, report.abstract ?? "", report.summary ?? ""]
     .join(" ")
@@ -79,22 +111,21 @@ function FeaturedLead({ report }: { report: ResearchReport }) {
       <div className="mt-auto">
         <p className="text-sm text-fog">Featured / {report.type}</p>
         <h2 className="mt-3 max-w-[25rem] text-2xl leading-[1.2] tracking-tight sm:text-[1.75rem]">
-          <Link
-            href={reportHref(report)}
-            target={report.external ? "_blank" : undefined}
-            // Threat: reverse tabnabbing (Phase 3)
-            rel={report.external ? "noopener noreferrer" : undefined}
+          <ReportTitle
+            report={report}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
           >
             {report.title}
-          </Link>
+          </ReportTitle>
           <span className="block text-paper/45">{report.line}</span>
         </h2>
         <p className="mt-4 max-w-[24rem] text-[0.9375rem] leading-snug text-paper/70">
           {summary}
         </p>
         <div className="mt-8">
-          <Pill tone="light">Preview</Pill>
+          <Pill tone="light">
+            {isLinkable(report) ? "Preview" : "Coming soon"}
+          </Pill>
         </div>
       </div>
     </article>
@@ -102,24 +133,23 @@ function FeaturedLead({ report }: { report: ResearchReport }) {
 }
 
 function FeaturedSecondary({ report }: { report: ResearchReport }) {
+  const linkable = isLinkable(report);
+
   return (
     <article className="group relative flex min-h-[20rem] flex-col rounded-2xl bg-mist p-6 sm:min-h-[30rem] sm:p-7">
       <span className="absolute right-5 top-5 sm:right-6 sm:top-6">
-        <Pill tone="dark">Preview</Pill>
+        <Pill tone="dark">{linkable ? "Preview" : "Coming soon"}</Pill>
       </span>
 
       <div className="mt-auto">
         <p className="text-md text-fog">{report.type}</p>
         <h2 className="mt-3 max-w-[20rem] text-2xl leading-[1.2] tracking-tight">
-          <Link
-            href={reportHref(report)}
-            target={report.external ? "_blank" : undefined}
-            // Threat: reverse tabnabbing (Phase 3)
-            rel={report.external ? "noopener noreferrer" : undefined}
+          <ReportTitle
+            report={report}
             className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
           >
             {report.title}
-          </Link>
+          </ReportTitle>
           <span className="block text-fog">{report.line}</span>
         </h2>
       </div>
