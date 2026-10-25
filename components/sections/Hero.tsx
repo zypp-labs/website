@@ -79,7 +79,7 @@ export default function Hero() {
               transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
               className="display max-w-[11em] text-[clamp(2.9rem,7.9vw,8rem)] tracking-[-0.035em]"
             >
-              Engineering payments beyond connectivity.
+              Engineering payments beyond connectivity
             </motion.h1>
           </div>
         </div>

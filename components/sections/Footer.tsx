@@ -189,32 +189,22 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="px-6 pt-10 sm:px-10 sm:pt-14">
-            <motion.div
-              className="max-w-[12em]"
+         <div className="px-6 pt-10 sm:px-10 sm:pt-14">
+            <motion.h2
+              className="display max-w-[12em] text-[clamp(2.5rem,6.4vw,6.5rem)] font-medium tracking-tighter"
               {...focus}
             >
-              <svg
-                viewBox="0 0 1200 200"
-                className="w-full h-auto"
-                aria-label="Zypp Labs"
-                role="img"
-              >
-                <text
-                  x="0"
-                  y="150"
-                  fontSize="180"
-                  fontWeight="500"
-                  letterSpacing="-0.08em"
-                  fill="currentColor"
-                >
-                  Zypp Labs
-                </text>
-              </svg>
-            </motion.div>
+              Engineering payments {" "}
+              <span className="text-paper/75">sbeyond connectivity.</span>
+            </motion.h2>
+
+            <div className="mt-8">
+              <CtaButton href="#research" tone="light">
+                Read the whitepaper
+              </CtaButton>
+            </div>
           </div>
         </div>
-
         {/* 3. The white panel with the links */}
         <div className="p-3 pt-24 sm:p-4 sm:pt-32">
           <div className="rounded-[1.25rem] bg-paper p-6 text-ink sm:p-10">
