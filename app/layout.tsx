@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Host_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import SmoothScroll from "@/components/providers/SmoothScroll";
+import GsapSmoothScroll from "@/components/providers/GsapSmoothScroll";
 import Nav from "@/components/nav/Nav";
 import { getMetadata } from "@/lib/seo";
 
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <Nav />
-        <SmoothScroll>{children}</SmoothScroll>
+        <GsapSmoothScroll>{children}</GsapSmoothScroll>
       </body>
     </html>
   );
