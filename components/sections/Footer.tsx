@@ -14,10 +14,12 @@ const POSTER = {
 };
 
 const explore = [
-  { label: "Platform", href: "#platform" },
-  { label: "Products", href: "#products" },
-  { label: "Architecture", href: "#how-it-works" },
-  { label: "Research", href: "#research" },
+  { label: "Zypp Pay", href: "/products/pay" },
+  { label: "Developers", href: "/product/sdk" },
+  { label: "Research", href: "/research" },
+  { label: "Architecture", href: "/#how-it-works" },
+  { label: "Company", href: "/company" },
+  { label: "Contact", href: "mailto:hello@zypp.fun" },
 ];
 
 const legal = [
@@ -26,8 +28,8 @@ const legal = [
 ];
 
 const social = [
-  { label: "X / Twitter", href: "https://x.com/use_zypp" },
-  { label: "GitHub", href: "https://github.com/zypp-labs" },
+  { label: "X ↗", href: "https://x.com/use_zypp" },
+  { label: "GitHub ↗", href: "https://github.com/zypp-labs" },
 ];
 
 /**
@@ -56,18 +58,18 @@ function Column({
 }) {
   return (
     <nav aria-label={title}>
-      <p className="text-md text-ink/55">{title}</p>
-      <ul className="mt-5 space-y-3">
+      <p className="text-sm text-ink/55">{title}</p>
+      <ul className="mt-4 space-y-2.5">
         {items.map((l) => (
           <li key={l.label}>
             <Link
               href={l.href}
-              target={external || l.href.startsWith("http") ? "_blank" : undefined}
-              rel={external || l.href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-1.5 underline decoration-ink/0 underline-offset-4 transition-colors hover:decoration-ink"
+              target={external || l.href.startsWith("http") || l.href.startsWith("mailto:") ? "_blank" : undefined}
+              rel={external || l.href.startsWith("http") || l.href.startsWith("mailto:") ? "noopener noreferrer" : undefined}
+              className="inline-flex items-center gap-1.5 text-base underline decoration-ink/0 underline-offset-4 transition-colors hover:decoration-ink"
             >
               {l.label}
-              {(external || l.href.startsWith("http")) && (
+              {(external || l.href.startsWith("http") || l.href.startsWith("mailto:")) && (
                 <ArrowUpRight aria-hidden="true" size={14} weight="bold" />
               )}
             </Link>
@@ -94,15 +96,15 @@ function Newsletter() {
 
   return (
     <div className="max-w-md lg:col-span-5">
-      <h3 className="text-2xl font-medium tracking-tight">
-        Get research updates
+      <h3 className="text-xl font-medium tracking-tight">
+        Research updates
       </h3>
       <p className="mt-2 text-ink/70">
-        New whitepapers and releases, straight to your inbox.
+        New papers and notes, by email.
       </p>
 
       {status === "done" ? (
-        <p role="status" className="mt-6 text-lg">
+        <p role="status" className="mt-6 text-base">
           You’re on the list. We’ll be in touch.
         </p>
       ) : (
@@ -126,7 +128,7 @@ function Newsletter() {
             />
             <button
               type="submit"
-              className=" shrink-0 rounded-full bg-ink px-5 py-3 text-md text-paper transition-colors hover:bg-night"
+              className=" shrink-0 rounded-full bg-ink px-5 py-3 text-sm text-paper transition-colors hover:bg-night"
             >
               Subscribe
             </button>
@@ -188,19 +190,28 @@ export default function Footer() {
           </div>
 
           <div className="px-6 pt-10 sm:px-10 sm:pt-14">
-            <motion.h2
-              className="display max-w-[12em] text-[clamp(2.5rem,6.4vw,6.5rem)] font-medium tracking-tighter"
+            <motion.div
+              className="max-w-[12em]"
               {...focus}
             >
-              Payments that keep working{" "}
-              <span className="text-paper/55">when the network doesn’t.</span>
-            </motion.h2>
-
-            <div className="mt-8">
-              <CtaButton href="#research" tone="light">
-                Read the whitepaper
-              </CtaButton>
-            </div>
+              <svg
+                viewBox="0 0 1200 200"
+                className="w-full h-auto"
+                aria-label="Zypp Labs"
+                role="img"
+              >
+                <text
+                  x="0"
+                  y="150"
+                  fontSize="180"
+                  fontWeight="500"
+                  letterSpacing="-0.08em"
+                  fill="currentColor"
+                >
+                  Zypp Labs
+                </text>
+              </svg>
+            </motion.div>
           </div>
         </div>
 
@@ -219,7 +230,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mono-label mt-12 flex flex-wrap justify-between gap-x-10 gap-y-2 border-t border-ink/15 pt-6 text-[0.6875rem] text-ink/60">
+            <div className="mono-label mt-12 flex flex-wrap justify-between gap-x-10 gap-y-2 border-t border-ink/15 pt-6 text-xs text-ink/60">
               <span>© 2026 Zypp Labs</span>
               <span>All rights reserved</span>
             </div>

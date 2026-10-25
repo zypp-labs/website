@@ -77,9 +77,9 @@ export default function Hero() {
               initial={{ filter: "blur(28px)", opacity: 0, scale: 1.04 }}
               animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-              className="display max-w-[11em] text-[clamp(2.9rem,7.9vw,8rem)] tracking-tighter"
+              className="display max-w-[11em] text-[clamp(2.9rem,7.9vw,8rem)] tracking-[-0.035em]"
             >
-              Engineering offline payment solutions for everyone.
+              Engineering payments beyond connectivity.
             </motion.h1>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function Hero() {
         <div className="flex flex-col gap-8 px-6 pb-6 sm:flex-row sm:items-end sm:justify-between sm:px-10 sm:pb-10">
           <p className="max-w-2xl text-lg leading-snug text-paper/80 sm:text-xl">
             Zypp Labs is a research and engineering lab building offline-capable
-            payment solutions for consumers and institues: banks, wallets and
+            payment technology for consumers and institutions: banks, wallets and
             fintech.
           </p>
           <CtaButton href="#research" tone="light">

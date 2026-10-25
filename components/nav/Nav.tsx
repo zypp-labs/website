@@ -6,10 +6,10 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
 const links = [
-  { label: "Platform", href: "#platform" },
-  { label: "Research", href: "#research" },
-  { label: "Developers", href: "/product/sdk" },
   { label: "Pay", href: "/products/pay" },
+  { label: "Developers", href: "/product/sdk" },
+  { label: "Research", href: "/research" },
+  { label: "Company", href: "/company" },
 ];
 
 export default function Nav() {
@@ -87,7 +87,7 @@ export default function Nav() {
             href="#sdk"
             className="mono-label rounded-xl bg-ink px-5 py-3 text-paper transition-colors md:hover:bg-night md:ml-1"
           >
-            Get the SDK
+            Get in touch
           </Link>
 
           {/* Mobile menu button */}
