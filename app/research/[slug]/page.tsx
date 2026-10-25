@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight, Clock } from "@phosphor-icons/react/dist/ssr";
+import { ArrowLeft, Clock } from "@phosphor-icons/react/dist/ssr";
 import { getMetadata } from "@/lib/seo";
 import Footer from "@/components/sections/Footer";
 import ShareButton from "@/components/ui/ShareButton";
-import { reports as REPORTS, getReportBySlug } from "@/content/research";
+import { reports as REPORTS } from "@/content/research";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zypp.fun";
 
@@ -134,7 +134,7 @@ export default async function ResearchDetailPage({
             </h1>
 
             <p className="text-md text-ink/60">
-              By {report.authors.join(", ")}
+              {report.authors?.length ? `By ${report.authors.join(", ")}` : null}
             </p>
           </header>
 
@@ -157,7 +157,7 @@ export default async function ResearchDetailPage({
               {report.abstract || report.summary || report.line}
             </p>
 
-            <div className="mt-8">
+            {/* <div className="mt-8">
               {isPublished ? (
                 <Link
                   href={report.href}
@@ -177,7 +177,7 @@ export default async function ResearchDetailPage({
                   Coming soon
                 </span>
               )}
-            </div>
+            </div> */}
 
             {report.sections?.map((section) => (
               <section key={section.id} id={section.id} className="mt-12 scroll-mt-28">

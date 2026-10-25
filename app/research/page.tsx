@@ -1,85 +1,44 @@
-"use client";
-
-import Footer from "@/components/sections/Footer";
+import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  Lightning,
-} from "@phosphor-icons/react";
-import { reports as REPORTS } from "@/content/research";
+import { getMetadata } from "@/lib/seo";
+import Footer from "@/components/sections/Footer";
+import ResearchBrowser from "@/components/research/ResearchBrowser";
+import { reports } from "@/content/research";
 
-const pad = (n: number) => String(n).padStart(2, "0");
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zypp.fun";
 
-function Pill({ children, tone }: { children: string; tone: "dark" | "light" }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`text-md inline-flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors duration-300 group-hover:bg-accent group-hover:text-night ${
-        tone === "dark" ? "bg-ink text-paper" : "bg-paper text-ink"
-      }`}
-    >
-      {children}
-      <ArrowUpRight size={14} weight="bold" />
-    </span>
-  );
-}
-
-function FeaturedLead({ report }: { report: Report }) {
-  return (
-    <article
-      className="group relative flex min-h-[26rem] flex-col rounded-2xl bg-ink p-6 text-paper [clip-path:polygon(0_0,calc(100%-4rem)_0,100%_4rem,100%_100%,0_100%)] sm:min-h-[30rem] sm:p-7"
-    >
-      <Lightning aria-hidden="true" size={22} weight="fill" />
-
-      <div className="mt-auto">
-        <p className="text-sm text-fog">
-          Featured / {report.type}
-        </p>
-        <h3 className="mt-3 max-w-[25rem] text-2xl leading-[1.2] tracking-tight sm:text-[1.75rem]">
-          <Link
-            href={report.href}
-            className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
-          >
-            {report.title}
-          </Link>
-          <span className="block text-paper/45">{report.line}</span>
-        </h3>
-        <p className="mt-4 max-w-[24rem] text-[0.9375rem] leading-snug text-paper/70">
-          {report.summary}
-        </p>
-        <div className="mt-8">
-          <Pill tone="light">Preview</Pill>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function FeaturedSecondary({ report }: { report: Report }) {
-  return (
-    <article className="group relative flex min-h-[20rem] flex-col rounded-2xl bg-mist p-6 sm:min-h-[30rem] sm:p-7">
-      <span className="absolute right-5 top-5 sm:right-6 sm:top-6">
-        <Pill tone="dark">Preview</Pill>
-      </span>
-
-      <div className="mt-auto">
-        <p className="text-md text-fog">{report.type}</p>
-        <h3 className="mt-3 max-w-[20rem] text-2xl leading-[1.2] tracking-tight">
-          <Link
-            href={report.href}
-            className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
-          >
-            {report.title}
-          </Link>
-          <span className="block text-fog">{report.line}</span>
-        </h3>
-      </div>
-    </article>
-  );
+export async function generateMetadata(): Promise<Metadata> {
+  return getMetadata({
+    title: "Research",
+    description:
+      "Whitepapers, protocols and threat models from Zypp Labs on offline-capable payments.",
+    path: "/research",
+  });
 }
 
 export default function ResearchPage() {
-  const featured = REPORTS.filter((r) => r.featured).slice(0, 2);
+  // Every report has a detail route, so the collection lists those URLs
+  // rather than the raw `href` (which is "#" for on-site reports and an
+  // external document for the rest).
+  const listed = reports;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Research",
+    url: `${SITE_URL}/research`,
+    isPartOf: { "@type": "WebSite", name: "Zypp Labs", url: SITE_URL },
+    publisher: { "@type": "Organization", name: "Zypp Labs", url: SITE_URL },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: listed.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/research/${encodeURIComponent(r.slug)}`,
+        name: `${r.title} ${r.line}`,
+      })),
+    },
+  };
 
   return (
     <>
@@ -90,64 +49,26 @@ export default function ResearchPage() {
         Skip to content
       </Link>
       <main id="main" className="flex-1 bg-paper text-ink">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <div className="mx-auto max-w-screen px-6 py-28 sm:px-20 sm:py-36 lg:py-44">
-          <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <p className="text-[7rem] font-medium leading-[1] tracking-[-0.03em]">
-              Foundational <br/> Research
-            </p>
-            <p className="max-w-[28rem] text-md leading-snug text-ink/70">
+          <header className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <h1 className="text-[clamp(3rem,9vw,7rem)] font-medium leading-[0.95] tracking-[-0.04em]">
+              Foundational
+              <br />
+              Research
+            </h1>
+            <p className="max-w-[26rem] text-md leading-snug text-ink/70">
               The whitepapers, protocols and threat models behind offline
               payments.
             </p>
-          </div>
+          </header>
 
-          {featured.length > 0 && (
-            <div
-              className={`grid gap-2.5 ${
-                featured.length > 1 ? "lg:grid-cols-2" : ""
-              }`}
-            >
-              <FeaturedLead report={featured[0]} />
-              {featured[1] && <FeaturedSecondary report={featured[1]} />}
-            </div>
-          )}
-
-          <div className="mt-16 sm:mt-20">
-            <p className="text-md mb-3 text-ink/70">
-              All papers
-            </p>
-
-            <ul className="border-b border-ink/35">
-              {REPORTS.map((r, i) => (
-                <li
-                  key={`${r.title}-${r.line}`}
-                  className="border-t border-ink/35"
-                >
-                  <Link
-                    href={r.href}
-                    className="px-3 group grid gap-1 py-3.5 transition-colors hover:bg-ink/[0.04] sm:grid-cols-12 sm:items-center sm:gap-x-8"
-                  >
-                    <span className="mono-label text-[0.6875rem] text-ink/60 sm:col-span-1">
-                      {pad(i + 1)}.
-                    </span>
-                    <span className="text-ink/60 sm:col-span-2">{r.type}</span>
-                    <span className="sm:col-span-7">
-                      {r.title} {r.line}
-                    </span>
-                    <span className="mt-1 inline-flex items-center gap-1.5 sm:col-span-2 sm:mt-0 sm:justify-end">
-                      Preview
-                      <ArrowUpRight
-                        aria-hidden="true"
-                        size={14}
-                        weight="bold"
-                        className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none"
-                      />
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ResearchBrowser reports={reports} />
         </div>
       </main>
       <Footer />
