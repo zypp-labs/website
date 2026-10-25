@@ -28,8 +28,9 @@ export function generateStaticParams() {
   return REPORTS.map((report) => ({ slug: report.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const report = REPORTS.find((r) => r.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const report = REPORTS.find((r) => r.slug === slug);
   if (!report) return getMetadata({ title: "Research", path: "/research" });
   return getMetadata({
     title: report.title,
@@ -38,8 +39,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   });
 }
 
-export default function ResearchDetailPage({ params }: { params: { slug: string } }) {
-  const report = REPORTS.find((r) => r.slug === params.slug);
+export default async function ResearchDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const report = REPORTS.find((r) => r.slug === slug);
   if (!report) notFound();
 
   return (
