@@ -3,6 +3,8 @@ export type ResearchReport = {
   type: "Whitepaper" | "Protocol" | "Security";
   title: string;
   line: string;
+  /** Shown on the spec-sheet card. Defaults to 1.0 when unset. */
+  version?: string;
   abstract?: string;
   summary?: string;
   status?: string;
@@ -25,6 +27,7 @@ export const reports: ResearchReport[] = [
     type: "Whitepaper",
     title: "Delay Tolerant Networking and Solana Transaction Propagation",
     line: "for Offline-First Payments",
+    version: "1.0",
     abstract:
       "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect. Released March 2026 by Zypp Labs.",
     summary:
@@ -40,6 +43,7 @@ export const reports: ResearchReport[] = [
     type: "Security",
     title: "Threat model for device-to-device payments",
     line: "and the controls that contain each",
+    version: "1.0",
     abstract:
       "This paper sets out how an offline payment between two devices can be attacked and which controls contain each attack. It covers double spending, replay, forgery, key theft, ledger tampering, relay attacks and settlement conflicts, and it states plainly what offline payments cannot prevent and can only limit.",
     summary:

@@ -18,21 +18,50 @@ export const DEFAULT_TITLE = "Zypp Labs - Engineering Offline-Capable Payments";
 export const DEFAULT_DESCRIPTION = CANONICAL_ENTITY_SENTENCE;
 export const DEFAULT_OG_ALT = "Zypp Labs - Engineering offline-capable payments";
 
+export type OgImage = {
+  url: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  type?: string;
+};
+
+const DEFAULT_OG_IMAGE: OgImage = {
+  url: "/og/og-default.png",
+  alt: DEFAULT_OG_ALT,
+  width: 1200,
+  height: 630,
+  type: "image/png",
+};
+
 export function getMetadata({
   title,
   description,
   path = "/",
   noIndex = false,
+  image,
 }: {
   title?: string;
   description?: string;
   path?: string;
   noIndex?: boolean;
+  /**
+   * Override the shared OG/Twitter image, e.g. a route-generated card.
+   * Omit to keep the site-wide default. Pass `false` to emit no image tags at
+   * all and let the `opengraph-image` file convention supply them.
+   */
+  image?: OgImage | false;
 }): Metadata {
   const pageTitle = title ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE;
   const pageDescription = description || DEFAULT_DESCRIPTION;
   const canonicalUrl = new URL(path, SITE_URL).toString();
-  const ogImageUrl = new URL("/og/og-default.png", SITE_URL).toString();
+
+  // Fail-closed default: anything other than an explicit override resolves to
+  // the shared image, so a page can't accidentally ship without an OG tag.
+  const ogImage = image === undefined ? DEFAULT_OG_IMAGE : image;
+  const ogImageUrl = ogImage
+    ? new URL(ogImage.url, SITE_URL).toString()
+    : undefined;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -61,16 +90,20 @@ export function getMetadata({
       siteName: SITE_NAME,
       title: pageTitle,
       description: pageDescription,
-      images: [
-        {
-          url: ogImageUrl,
-          secureUrl: ogImageUrl,
-          width: 1200,
-          height: 630,
-          type: "image/png",
-          alt: DEFAULT_OG_ALT,
-        },
-      ],
+      ...(ogImage && ogImageUrl
+        ? {
+            images: [
+              {
+                url: ogImageUrl,
+                secureUrl: ogImageUrl,
+                width: ogImage.width ?? 1200,
+                height: ogImage.height ?? 630,
+                type: ogImage.type ?? "image/png",
+                alt: ogImage.alt,
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: "summary_large_image",
@@ -78,12 +111,9 @@ export function getMetadata({
       creator: "@use_zypp",
       title: pageTitle,
       description: pageDescription,
-      images: [
-        {
-          url: ogImageUrl,
-          alt: DEFAULT_OG_ALT,
-        },
-      ],
+      ...(ogImage && ogImageUrl
+        ? { images: [{ url: ogImageUrl, alt: ogImage.alt }] }
+        : {}),
     },
     icons: {
       icon: [

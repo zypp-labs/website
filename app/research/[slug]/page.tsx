@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock } from "@phosphor-icons/react/dist/ssr";
-import { getMetadata } from "@/lib/seo";
+import { getMetadata, SITE_URL } from "@/lib/seo";
 import Footer from "@/components/sections/Footer";
 import ShareButton from "@/components/ui/ShareButton";
 import { reports as REPORTS } from "@/content/research";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zypp.fun";
 
 function readMinutes(report: (typeof REPORTS)[number]) {
   if (!report.sections?.length) return null;
@@ -37,6 +35,17 @@ export async function generateMetadata({
     title: `${report.title} ${report.line}`,
     description: report.abstract,
     path: `/research/${report.slug}`,
+    // The card next to this file is generated from the same report data, so a
+    // shared link shows the paper's own title instead of the generic site
+    // image. `opengraph-image.tsx` is the source of truth for the artwork;
+    // this is only how we point at it and describe it.
+    image: {
+      url: `/research/${encodeURIComponent(report.slug)}/opengraph-image`,
+      alt: `${report.title} ${report.line} - Zypp Labs`,
+      width: 1200,
+      height: 630,
+      type: "image/png",
+    },
   });
 
   // Unpublished pages should not be indexed

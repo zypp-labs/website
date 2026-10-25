@@ -20,7 +20,7 @@ export default function ShareButton() {
     <button
       type="button"
       onClick={copy}
-      className="inline-flex items-center gap-2 text-ink/70 transition-colors hover:text-ink"
+      className="cursor-pointer inline-flex items-center gap-2 text-ink/70 transition-colors hover:text-ink"
     >
       {copied ? <Check size={16} weight="bold" /> : <LinkSimple size={16} />}
       <span aria-live="polite">{copied ? "Link copied" : "Share"}</span>
