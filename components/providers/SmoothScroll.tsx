@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,11 +12,9 @@ export default function SmoothScroll({
 }: {
   children: React.ReactNode;
 }) {
-  const lenisRef = useRef<Lenis | null>(null);
-
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    
+
     if (mediaQuery.matches) {
       return;
     }
@@ -27,13 +25,12 @@ export default function SmoothScroll({
       syncTouch: false,
     });
 
-    lenisRef.current = lenis;
-
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const tick = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+    gsap.ticker.add(tick);
 
     gsap.ticker.lagSmoothing(0);
 
@@ -54,11 +51,8 @@ export default function SmoothScroll({
 
     return () => {
       document.removeEventListener("click", handleAnchorClick);
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(tick);
       lenis.destroy();
-      lenisRef.current = null;
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
