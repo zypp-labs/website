@@ -54,7 +54,7 @@ function Pill({ children, tone }: { children: string; tone: "dark" | "light" }) 
   return (
     <span
       aria-hidden="true"
-      className={`mono-label inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[0.6875rem] transition-colors duration-300 group-hover:bg-accent group-hover:text-night ${
+      className={`text-md inline-flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors duration-300 group-hover:bg-accent group-hover:text-night ${
         tone === "dark" ? "bg-ink text-paper" : "bg-paper text-ink"
       }`}
     >
@@ -73,8 +73,8 @@ function FeaturedLead({ report }: { report: Report }) {
       <Lightning aria-hidden="true" size={22} weight="fill" />
 
       <div className="mt-auto">
-        <p className="mono-label text-[0.6875rem] text-fog">
-          Featured / {report.type.toLowerCase()}
+        <p className="text-sm text-fog">
+          Featured / {report.type}
         </p>
         <h3 className="mt-3 max-w-[25rem] text-2xl leading-[1.2] tracking-tight sm:text-[1.75rem]">
           <Link
@@ -104,7 +104,7 @@ function FeaturedSecondary({ report }: { report: Report }) {
       </span>
 
       <div className="mt-auto">
-        <p className="mono-label text-[0.6875rem] text-fog">{report.type}</p>
+        <p className="text-md text-fog">{report.type}</p>
         <h3 className="mt-3 max-w-[20rem] text-2xl leading-[1.2] tracking-tight">
           <Link
             href={report.href}
@@ -165,7 +165,7 @@ export default function Research() {
                 type="button"
                 aria-pressed={filter === f}
                 onClick={() => setFilter(f)}
-                className={`mono-label shrink-0 rounded-full px-4 py-2.5 text-[0.6875rem] transition-colors ${
+                className={`shrink-0 rounded-full px-4 py-2.5 text-md transition-colors ${
                   filter === f ? "bg-ink text-paper" : "hover:bg-ink/10"
                 }`}
               >
@@ -186,7 +186,7 @@ export default function Research() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search"
-              className="mono-label w-full rounded-full bg-transparent py-3 pl-10 pr-4 text-[0.6875rem] ring-1 ring-ink/15 placeholder:text-ink/50 focus:ring-ink/40 focus:outline-none"
+              className="text-md w-full rounded-full bg-transparent py-3 pl-10 pr-4 ring-1 ring-ink/15 placeholder:text-ink/50 focus:ring-ink/40 focus:outline-none"
             />
           </label>
         </div>
@@ -205,7 +205,7 @@ export default function Research() {
 
         {/* Index */}
         <div className="mt-16 sm:mt-20">
-          <p className="mono-label mb-3 text-[0.6875rem] text-ink/70">
+          <p className="text-md mb-3 text-ink/70">
             All papers
           </p>
 

@@ -11,7 +11,7 @@ export type Screen = {
 };
 
 export const productsIntro =
-  "At Zypp Labs, we build different ways for people to send and receive money offline. Zypp Pay is the consumer app. The Zypp SDK brings the same offline settlement to banks, fintechs and wallets.";
+  "At Zypp Labs, we build different ways for people to send and receive money offline.";
 
 export const zyppPay = {
   name: "Zypp Pay",
@@ -34,8 +34,8 @@ export const placeholderScreens = [
 
 export const whitepaper = {
   label: "Research",
-  title: "[Whitepaper title, to confirm]",
-  meta: "Whitepaper · v1 · 2026",
+  title: "Delay Tolerant Networking and Solana Transaction Propagation for Offline-First Payments",
+  meta: "Paper · March 2026",
   href: "#research",
 };
 

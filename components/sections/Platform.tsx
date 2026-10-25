@@ -119,7 +119,7 @@ export default function Platform() {
           </div>
 
           <div className="md:col-span-8 lg:col-span-8">
-            <h2 className="display max-w-[25em] text-[clamp(2.25rem,4.6vw,4.5rem)] leading-18 md:leading-16 font-medium tracking-tighter">
+            <h2 className="display max-w-[25em] text-[2.2rem] md:text-[3rem] lg:text-[4rem] leading-10 md:leading-12 lg:leading-16 font-medium tracking-tighter">
               Combining cryptography and ledger design into{" "}
               <span className="text-fog">a payment rail that never sleeps.</span>
             </h2>

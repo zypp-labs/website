@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import {
   placeholderScreens,
   productsIntro,
@@ -18,11 +18,16 @@ function Pill({ children, tone }: { children: string; tone: "dark" | "light" }) 
   return (
     <span
       aria-hidden="true"
-      className={`absolute right-5 top-5 rounded-full px-4 py-2.5 font-mono text-xs uppercase tracking-[0.04em] transition-colors duration-300 group-hover:bg-accent group-hover:text-night sm:right-6 sm:top-6 ${
+      className={`absolute right-5 top-5 inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-md transition-colors duration-300 group-hover:bg-accent group-hover:text-night sm:right-6 sm:top-6 ${
         tone === "dark" ? "bg-ink text-paper" : "bg-paper text-ink"
       }`}
     >
       {children}
+      <ArrowUpRight
+        size={16}
+        weight="bold"
+        className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+      />
     </span>
   );
 }
@@ -40,14 +45,14 @@ function CardTitle({
   muted: string;
 }) {
   return (
-    <h3 className="absolute left-6 right-32 top-5 text-2xl leading-[1.2] tracking-tight sm:left-7 sm:top-6">
+    <h3 className="absolute left-6 right-32 top-5 tracking-tight sm:left-7 sm:top-6">
       <Link
         href={href}
-        className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
+        className="after:absolute after:inset-0 after:content-[''] leading-[1.2] text-2xl focus-visible:outline-offset-[-3px]"
       >
         {name}
       </Link>
-      <span className={`block ${muted}`}>{line}</span>
+      <span className={`mt-2 lg:mt-0 block text-lg md:text-xl lg:text-2xl leading-[1] lg:leading-[1.2] ${muted}`}>{line}</span>
     </h3>
   );
 }
@@ -180,10 +185,10 @@ export default function Products() {
             className={`group relative flex min-h-[13.75rem] flex-col justify-between rounded-2xl p-6 text-night sm:p-7 ${LIME}`}
           >
             <div>
-              <p className="font-mono text-[0.6875rem] uppercase tracking-[0.04em] opacity-60">
+              <p className="text-md opacity-60">
                 {whitepaper.label}
               </p>
-              <h3 className="mt-3 max-w-[20rem] text-2xl leading-[1.2] tracking-[-0.025em]">
+              <h3 className="mt-3 max-w-[23rem] text-2xl leading-[1.2] tracking-[-0.025em]">
                 <Link
                   href={whitepaper.href}
                   className="after:absolute after:inset-0 after:content-[''] focus-visible:outline-offset-[-3px]"
@@ -192,7 +197,7 @@ export default function Products() {
                 </Link>
               </h3>
             </div>
-            <p className="mt-8 font-mono text-[0.6875rem] uppercase tracking-[0.04em] opacity-60">
+            <p className="mt-8 text-md opacity-60">
               {whitepaper.meta}
             </p>
             <span
