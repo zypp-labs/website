@@ -52,6 +52,23 @@ body {
   font-optical-sizing: auto;
 }
 
+.team-person-photo img {
+  filter: grayscale(1);
+  transition: filter 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .team-person-card:hover .team-person-photo img {
+    filter: grayscale(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-person-photo img {
+    transition: none;
+  }
+}
+
 input,
 textarea,
 select {
