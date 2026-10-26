@@ -17,7 +17,7 @@ type Report = {
   title: string;
   /** Muted second line of the title */
   line: string;
-  summary: string;
+  summary?: string;
   href: string;
   /** The first two featured reports get the large cards */
   featured?: boolean;
