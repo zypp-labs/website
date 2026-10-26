@@ -119,7 +119,7 @@ function FeaturedLead({ report }: { report: ResearchReport }) {
           </ReportTitle>
           <span className="block text-paper/45">{report.line}</span>
         </h2>
-        <p className="mt-4 max-w-[24rem] text-[0.9375rem] leading-snug text-paper/70">
+        <p className="mt-4 max-w-[26rem] text-[0.9375rem] leading-snug text-paper/70">
           {summary}
         </p>
         <div className="mt-8">

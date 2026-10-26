@@ -7,6 +7,7 @@ import {
   Lightning,
   MagnifyingGlass,
 } from "@phosphor-icons/react";
+import { reports } from "@/content/research";
 
 type ReportType = "Whitepaper" | "Protocol" | "Security";
 
@@ -21,26 +22,6 @@ type Report = {
   /** The first two featured reports get the large cards */
   featured?: boolean;
 };
-
-const REPORTS: Report[] = [
-  {
-    type: "Whitepaper",
-    title: "Delay Tolerant Networking and Solana Transaction Propagation",
-    line: "for Offline-First Payments",
-    summary:
-      "Describes how two devices can exchange value with no network, and how the ledger stays consistent once they reconnect. Released March 2026 by Zypp Labs.",
-    href: "https://drive.google.com/file/d/1USGGqEICwqUAfm-by6JwF4vrbQPbVdvU/view",
-    featured: true,
-  },
-  {
-    type: "Security",
-    title: "Threat model for device-to-device payments",
-    line: "and the controls that contain each",
-    summary: "Maps the attacks that matter when no server is watching, and the on-device controls that contain each one.",
-    href: "#",
-    featured: true,
-  },
-];
 
 const FILTERS = ["All", "Whitepaper", "Protocol", "Security"] as const;
 type Filter = (typeof FILTERS)[number];
@@ -126,11 +107,11 @@ export default function Research() {
   const [filter, setFilter] = useState<Filter>("All");
   const [query, setQuery] = useState("");
 
-  const featured = REPORTS.filter((r) => r.featured).slice(0, 2);
+  const featured = reports.filter((r) => r.featured).slice(0, 2);
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return REPORTS.filter(
+    return reports.filter(
       (r) =>
         (filter === "All" || r.type === filter) &&
         (!q || `${r.title} ${r.line} ${r.summary}`.toLowerCase().includes(q)),

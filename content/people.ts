@@ -18,11 +18,10 @@ export const team: Person[] = [
   {
     name: "Joshua Idele",
     role: "Founder and CEO",
-    bio: "[One line on background and what he works on.]",
+    bio: "Head of Labs. Leads vision, strategy, and product design.",
     photo: { src: "/team/joshua.png", width: 526, height: 526 },
     links: [
       { label: "X", href: "https://x.com/josh_scriptz" },
-      // The username below was supplied as "Codig-With-Josh". The Zypp repo lives under "Coding-With-Josh", so I used that spelling. Please confirm.
       { label: "GitHub", href: "https://github.com/Coding-With-Josh" },
     ],
   },
@@ -38,8 +37,8 @@ export const team: Person[] = [
   },
   {
     name: "Udoka AM",
-    role: "[Role, to confirm]",
-    bio: "[One line on background and what he works on.]",
+    role: "Lead Engineer",
+    bio: "Leads protocol and blockchain engineering of the products.",
     photo: { src: "/team/udoka.png", width: 958, height: 964 },
     links: [
       { label: "Website", href: "https://udokaam.dev/" },

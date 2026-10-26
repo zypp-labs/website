@@ -114,7 +114,7 @@ export default function Platform() {
                 aria-hidden="true"
                 className="inline-block size-1.5 border border-ink/60"
               />
-              The integrated platform
+              The thesis
             </p>
           </div>
 

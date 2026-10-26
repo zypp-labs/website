@@ -8,6 +8,7 @@ import {
   researchAreas,
 } from "@/content/company";
 import { advisors, team, type Person } from "@/content/people";
+import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 /* ------------------------------------------------------------------
    Layout helpers
@@ -64,14 +65,14 @@ function initials(name: string) {
 function PersonCard({ p }: { p: Person }) {
   return (
     <li className="team-person-card">
-      <div className="team-person-photo relative aspect-square overflow-hidden rounded-md bg-mist">
+      <div className="team-person-photo relative aspect-square overflow-hidden rounded-3xl">
         {p.photo ? (
           <Image
             src={p.photo.src}
             alt={`Portrait of ${p.name}`}
             width={p.photo.width}
             height={p.photo.height}
-            className="h-full w-full object-cover grayscale"
+            className="h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-400 cursor-pointer"
           />
         ) : (
           <span
@@ -98,7 +99,8 @@ function PersonCard({ p }: { p: Person }) {
             rel="noopener noreferrer"
             className="mono-label text-[0.6875rem] underline decoration-ink/35 underline-offset-4 transition-colors hover:decoration-ink"
           >
-            {l.label} ↗
+            {l.label}
+            <ArrowUpRightIcon className="inline-flex" />
           </a>
         ))}
       </p>
@@ -111,13 +113,13 @@ function PersonCard({ p }: { p: Person }) {
 ------------------------------------------------------------------- */
 export default function Company() {
   return (
-    <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 sm:px-10 sm:pb-32 sm:pt-24">
+    <div className="mx-auto max-w-screen px-6 pb-24 pt-16 sm:px-10 sm:pb-32 sm:pt-24">
       <h1 className="display text-[clamp(3.5rem,11vw,7.5rem)]">Company</h1>
       <p className="mt-8 max-w-[38rem] text-xl leading-relaxed text-ink/75">
         {company.lead} Founded in {company.founded}, based in {company.location}.
       </p>
 
-      <Block label="Facts">
+      <Block label="About">
         <Rows rows={facts.map((f) => ({ label: f.label, value: f.value }))} />
       </Block>
 
@@ -130,14 +132,14 @@ export default function Company() {
                 i === 0 ? "pt-0" : "border-t border-ink/20"
               }`}
             >
-              <span className="mono-label text-[0.6875rem] text-ink/55">{a.n}</span>
+              <span className="text-md text-ink/55">{a.n}</span>
               <h3 className="text-[1.75rem] leading-tight tracking-[-0.03em]">
                 {a.title}
               </h3>
               <p className="max-w-[22rem] text-ink/70">{a.text}</p>
               <a
                 href={a.href}
-                className="mono-label text-[0.6875rem] underline decoration-ink/35 underline-offset-4 transition-colors hover:decoration-ink sm:text-right"
+                className="text-md underline decoration-ink/35 underline-offset-4 transition-colors hover:decoration-ink sm:text-right"
               >
                 Research ↗
               </a>

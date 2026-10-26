@@ -117,7 +117,7 @@ export default async function ResearchDetailPage({
           />
         )}
 
-        <div className="mx-auto max-w-screen px-6 py-28 sm:px-20 sm:py-36 lg:py-44">
+        <div className="mx-auto max-w-screen px-6 py-28 sm:px-20 sm:py-36 lg:py-30">
           <Link
             href="/research"
             className="mono-label inline-flex items-center gap-2 text-[0.6875rem] uppercase tracking-[0.04em] text-ink/60 transition-colors hover:text-ink"

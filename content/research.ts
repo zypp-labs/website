@@ -52,7 +52,7 @@ export const reports: ResearchReport[] = [
     datePublished: "2026-10",
     dateLabel: "October 2026",
     authors: ["Zypp Labs"],
-    href: "#",
+    href: "/research/threat-model-d2d-payments",
     external: false,
     featured: true,
     sections: [

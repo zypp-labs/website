@@ -14,7 +14,7 @@ function Glyph({ d, className }: GlyphProps & { d: string }) {
       aria-hidden="true"
       focusable="false"
       className={className}
-      fill="currentColor"
+      fill="#fff"
       fillRule="evenodd"
     >
       <path d={d} />

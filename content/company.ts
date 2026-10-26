@@ -46,10 +46,10 @@ export const contact: { label: string; value: string; note?: string; href?: stri
   {
     label: "General",
     // Supplied as the public contact. A domain address (hello@your-domain) is better before launch.
-    value: "codewithjoshh@gmail.com",
-    href: "mailto:codewithjoshh@gmail.com",
+    value: "info@zypp.fun",
+    href: "mailto:info@zypp.fun",
   },
-  { label: "Partnerships", value: "[email, to confirm]", note: "Banks, fintechs and wallets" },
-  { label: "Security", value: "[email, to confirm]", note: "Responsible disclosure" },
+  { label: "Partnerships", value: "partnership@zypp.fun", note: "Banks, fintechs and wallets" },
+  { label: "Security", value: "security@zypp.fun", note: "Responsible disclosure" },
   { label: "Brand", value: "Logo (SVG)", href: "/logo.svg", note: "Download" },
 ];
