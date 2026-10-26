@@ -35,7 +35,7 @@ export default function CompanyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* <Nav /> */}
-      <header className=" max-w-7xl px-6 pt-6 sm:px-10 sm:pt-8">
+      <header className="w-screen px-6 pt-6 sm:px-10 sm:pt-8">
         <div className="flex h-[3.375rem] items-center">
           <Logo className="text-ink" />
         </div>
